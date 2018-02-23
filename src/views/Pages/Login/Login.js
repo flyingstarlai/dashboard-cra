@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import {Container, Row, Col, CardGroup, Card, CardBody, Button, Input, InputGroup, InputGroupAddon} from 'reactstrap';
-
+import { reduxForm, Field } from 'redux-form'
+import InputField from '../../../components/UI/Input/Input'
 
 class Login extends Component {
   render() {
@@ -15,30 +16,32 @@ class Login extends Component {
                   <CardBody>
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
-                    <InputGroup className="mb-3">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="icon-user"></i>
-                        </span>
-                      </div>
-                      <Input type="text" placeholder="Username"/>
-                    </InputGroup>
-                    <InputGroup className="mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="icon-lock"></i>
-                        </span>
-                      </div>
-                      <Input type="password" placeholder="Password"/>
-                    </InputGroup>
-                    <Row>
-                      <Col xs="6">
-                        <Button color="primary" className="px-4">Login</Button>
-                      </Col>
-                      <Col xs="6" className="text-right">
-                        <Button color="link" className="px-0">Forgot password?</Button>
-                      </Col>
-                    </Row>
+                    <form onSubmit={this.props.handleSubmit(values=>console.log(values))}>
+                      <Field
+                        key="username"
+                        elementType="text"
+                        groupType="icon-text"
+                        icon="icon-user"
+                        component={InputField}
+                        name="username"
+                        placeholder="Username" />
+                      <Field
+                        key="password"
+                        elementType="password"
+                        groupType="icon-text"
+                        icon="icon-lock"
+                        component={InputField}
+                        name="password"
+                        placeholder="Password" />
+                      <Row>
+                        <Col xs="6">
+                          <Button color="primary" className="px-4">Login</Button>
+                        </Col>
+                        <Col xs="6" className="text-right">
+                          <Button color="link" className="px-0">Forgot password?</Button>
+                        </Col>
+                      </Row>
+                    </form>
                   </CardBody>
                 </Card>
                 <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + '%' }}>
@@ -60,4 +63,13 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {}
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+export default connect(mapStateToProps, mapDispatchToProps) (reduxForm({
+  form: 'loginForm',
+})(Login));

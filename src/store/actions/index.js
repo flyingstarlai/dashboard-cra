@@ -1,4 +1,4 @@
 export {
   auth,
   logout
-} from './auth'
+} from './aut'
