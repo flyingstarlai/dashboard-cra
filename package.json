@@ -1,0 +1,45 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "4.0.0-beta.3",
+    "chart.js": "2.7.0",
+    "font-awesome": "^4.7.0",
+    "history": "4.7.2",
+    "react": "^16.2.0",
+    "react-chartjs-2": "2.6.4",
+    "react-dates": "^16.3.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-scripts-cssmodules": "^1.0.171",
+    "react-select": "^1.2.1",
+    "react-text-mask-hoc": "^0.10.6",
+    "react-transition-group": "^2.2.1",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-form": "^7.2.3",
+    "redux-thunk": "^2.2.0",
+    "simple-line-icons": "^2.4.1"
+  },
+  "devDependencies": {
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.1.2"
+  },
+  "scripts": {
+    "start": "npm-run-all -p build-dev-css1 build-dev-css2 build-dev-css3 build-dev-react",
+    "build": "npm-run-all    build-prod-css1 build-prod-css2 build-prod-css3 build-prod-react",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "build-prod-css1": "node-sass-chokidar src/styles/scss/dropdown-menu-right.scss -o src/styles/css/",
+    "build-prod-css2": "node-sass-chokidar src/styles/scss/style.scss -o src/styles/css/",
+    "build-prod-css3": "node-sass-chokidar src/styles/scss/vendors/react-select/react-select.scss -o src/styles/css/",
+    "build-prod-react": "react-scripts build",
+    "build-dev-css1": "node-sass-chokidar --watch src/styles/scss/dropdown-menu-right.scss -o src/styles/css/",
+    "build-dev-css2": "node-sass-chokidar --watch src/styles/scss/style.scss -o src/styles/css/",
+    "build-dev-css3": "node-sass-chokidar --watch src/styles/scss/vendors/react-select/react-select.scss -o src/styles/css/",
+    "build-dev-react": "react-scripts start"
+  }
+}
