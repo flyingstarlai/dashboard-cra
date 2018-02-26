@@ -13,7 +13,7 @@ const iconText = (props) => {
         </div>
         {props.children}
       </InputGroup>
-        <FormText color="danger"> {props.touched && props.error}</FormText>
+        <FormText color="danger"> {props.meta.touched && props.meta.error}</FormText>
     </FormGroup>
   );
 }

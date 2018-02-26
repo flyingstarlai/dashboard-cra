@@ -22,35 +22,37 @@ export const authSuccess = (token, login) => {
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error
+    error: error
   }
 }
 
 
 export const logout = () => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('loginInfo')
   return {
     type: actionTypes.AUTH_LOGOUT
   }
 }
 
-export const auth = (username, password) => {
+export const auth = (values) => {
   return async dispatch => {
     dispatch(authStart())
-    const authData = {
-      username,
-      password
-    }
     try {
-      const res = await axios.post('/user/login', authData)
+      const res = await axios.post('/user/login', values)
       if(res) {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('loginInfo', res.data.loginUser)
         dispatch(authSuccess(res.data.token, res.data.loginUser))
       }
     } catch(error) {
+      console.log('ERR', error.response.data)
       dispatch(authFail(error.response.data))
     }
+  }
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token')
+    const loginInfo = localStorage.getItem('loginInfo')
+    if(!token) dispatch(logout())
+    else dispatch(authSuccess(token, loginInfo))
   }
 }

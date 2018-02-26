@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 import {
   Nav,
   NavItem,
   NavbarToggler,
   NavbarBrand,
+  NavLink
 } from 'reactstrap';
 
 class Header extends Component {
@@ -38,6 +40,11 @@ class Header extends Component {
         <NavbarToggler className="d-md-down-none mr-auto" onClick={this.sidebarToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
+        <Nav className="d-md-down-none">
+          <NavItem className="px-3">
+            <NavLink tag={Link} to="/logout"><i className="icon-logout"> 登出</i></NavLink>
+          </NavItem>
+        </Nav>
         <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
